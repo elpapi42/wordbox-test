@@ -30,8 +30,25 @@ poetry run make test-integration
 
 ## Live deployment
 
+* Docs
+```
 http://wordbox-test-93fm5.ondigitalocean.app/docs
-POST http://wordbox-test-93fm5.ondigitalocean.app/users
-GET http://wordbox-test-93fm5.ondigitalocean.app/users/:uuid
+```
 
-PD: I deployed to Digital Ocean App Platform, but for some unknow reason DO is intercepting my POST request and converting it to a GET request, weird. I do not have anymore time to solve this.
+* Create user
+```bash
+curl --request POST \
+  --url https://wordbox-test-93fm5.ondigitalocean.app/users \
+  --header 'Content-Type: application/json' \
+  --data '{
+        "email": "whitman@email.com",
+        "name": "whitman",
+        "last_name": "bohorquez",
+        "phones": ["9876556432"]
+}'
+```
+
+* Retrieve user
+```
+curl --request GET --url https://wordbox-test-93fm5.ondigitalocean.app/users/4c46288e-d09b-4e6f-95cf-baec94b5a9ae
+```

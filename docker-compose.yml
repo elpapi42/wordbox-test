@@ -15,7 +15,7 @@ services:
   users-service:
     build: .
     image: users-image
-    command: poetry run make start-development
+    command: poetry run make start-dev
     ports:
       - 8001:8000
     volumes:

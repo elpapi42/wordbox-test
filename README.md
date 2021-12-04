@@ -27,3 +27,11 @@ poetry run make test
 ```bash
 poetry run make test-integration
 ```
+
+## Live deployment
+
+http://wordbox-test-93fm5.ondigitalocean.app/docs
+POST http://wordbox-test-93fm5.ondigitalocean.app/users
+GET http://wordbox-test-93fm5.ondigitalocean.app/users/:uuid
+
+PD: I deployed to Digital Ocean App Platform, but for some unknow reason DO is intercepting my POST request and converting it to a GET request, weird. I do not have anymore time to solve this.

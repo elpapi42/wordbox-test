@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    ports:
+      - 5433:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    container_name: reactive-postgres
+
+  users-service:
+    build: .
+    image: users-image
+    command: poetry run make start-development
+    ports:
+      - 8001:8000
+    volumes:
+      - .:/application
+    depends_on:
+      - postgres
+    container_name: users-service

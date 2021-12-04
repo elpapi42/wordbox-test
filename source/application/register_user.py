@@ -1,19 +1,10 @@
 from typing import List
-from uuid import UUID
 from dataclasses import dataclass
-
-from pydantic import BaseModel
 
 from source.domain.entities import User
 from source.ports.repositories import UserRepository
+from source.application.dtos import UserDTO
 
-
-class UserDTO(BaseModel):
-    id:UUID
-    email:str
-    name:str
-    last_name:str
-    phones:List[str]
 
 @dataclass
 class RegisterUserService():
@@ -25,7 +16,7 @@ class RegisterUserService():
         name:str,
         last_name:str,
         phones:List[str]
-    ) -> User:
+    ) -> UserDTO:
         user = User(
             email=email,
             name=name,

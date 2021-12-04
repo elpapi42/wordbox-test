@@ -52,3 +52,7 @@ curl --request POST \
 ```
 curl --request GET --url https://wordbox-test-93fm5.ondigitalocean.app/users/4c46288e-d09b-4e6f-95cf-baec94b5a9ae
 ```
+
+## References
+
+I recycled code from an old project i created few months ago: https://github.com/elpapi42/reactive-microservices-with-kafka-python

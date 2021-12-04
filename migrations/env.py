@@ -63,7 +63,7 @@ def run_migrations_offline():
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
-        version_table='users_migrations',
+        version_table='migrations',
         include_object=include_object
     )
 
@@ -87,7 +87,7 @@ def run_migrations_online():
     with connectable.connect() as connection:
         context.configure(
             connection=connection, target_metadata=target_metadata,
-            version_table='users_migrations',
+            version_table='migrations',
             include_object=include_object
         )
 

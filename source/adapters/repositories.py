@@ -2,6 +2,8 @@ from uuid import UUID
 from typing import Dict, Optional
 from dataclasses import dataclass, field
 
+from databases import Database
+
 from source.infrastructure.databases import postgres_database
 from source.infrastructure.tables import users_table
 from source.domain.entities import User
@@ -25,6 +27,7 @@ class FakeUserRepository(UserRepository):
 
 @dataclass
 class PostgresUserRepository(UserRepository):
+    database:Database = postgres_database
 
     async def add(self, user:User):
         query = users_table.insert().values(
@@ -35,12 +38,12 @@ class PostgresUserRepository(UserRepository):
             phones=user.phones
         )
 
-        await postgres_database.execute(query)
+        await self.database.execute(query)
 
     async def get(self, id:UUID) -> Optional[User]:
         query = users_table.select().where(users_table.c.id == id)
 
-        user = await postgres_database.fetch_one(query, values={})
+        user = await self.database.fetch_one(query)
 
         if user is None:
             return None
